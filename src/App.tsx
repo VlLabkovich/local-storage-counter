@@ -21,10 +21,14 @@ function App() {
     const getFromToLocalStorage = () => {
         let valueAsString = localStorage.getItem('counterValue');
 
-        if(valueAsString) {
+        if (valueAsString) {
             setValue(JSON.parse(valueAsString)) // преобразуем строку в число
         }
 
+    }
+    const clearLocalStorage = () => {
+        localStorage.clear()
+        setValue(0)
     }
 
 
@@ -40,6 +44,7 @@ function App() {
             <div>
                 <button onClick={setToLocalStorage}>setToLocalStorage</button>
                 <button onClick={getFromToLocalStorage}>getFromToLocalStorage</button>
+                <button onClick={clearLocalStorage}>clearLocalStorage</button>
             </div>
 
         </div>
