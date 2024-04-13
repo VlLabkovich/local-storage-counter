@@ -9,7 +9,7 @@ function App() {
     const incHandler = () => {
         setValue(value + 1)
     }
-    const dicHandler = () => {
+    const decHandler = () => {
         setValue(value - 1)
     }
 
@@ -42,7 +42,7 @@ function App() {
             <h2>Counter: {value}</h2>
             <div>
                 <button onClick={incHandler}>Increment</button>
-                <button onClick={dicHandler}>Dicrement</button>
+                <button onClick={decHandler}>Decrement</button>
             </div>
             <div>
                 <button onClick={setToLocalStorageHandler}>setToLocalStorage</button>
