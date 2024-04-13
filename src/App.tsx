@@ -1,26 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [value, setValue] = useState(0);
+
+    const incHandler = () => {
+        setValue(value + 1)
+    }
+
+    const dicHandler = () => {
+        setValue(value - 1)
+    }
+
+    return (
+        <div className="App">
+            <h1>LocalStorage</h1>
+            <h2>{value}</h2>
+            <button onClick={incHandler}>Increment</button>
+            <button onClick={dicHandler}>Dicrement</button>
+        </div>
+    );
 }
 
 export default App;
