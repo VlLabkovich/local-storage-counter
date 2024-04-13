@@ -9,16 +9,15 @@ function App() {
     const incHandler = () => {
         setValue(value + 1)
     }
-
     const dicHandler = () => {
         setValue(value - 1)
     }
 
-    const setToLocalStorage = () => {
+    const setToLocalStorageHandler  = () => {
         localStorage.setItem('counterValue', JSON.stringify(value)) // преобразуем число в строку
+        localStorage.setItem('counterValue + 1', JSON.stringify(value + 1)) // преобразуем число в строку
     }
-
-    const getFromToLocalStorage = () => {
+    const getFromToLocalStorageHandler = () => {
         let valueAsString = localStorage.getItem('counterValue');
 
         if (valueAsString) {
@@ -26,11 +25,15 @@ function App() {
         }
 
     }
-    const clearLocalStorage = () => {
+
+    const clearLocalStorageHandler = () => {
         localStorage.clear()
         setValue(0)
     }
 
+    const removeItemFromLocalStorageHandler = () => {
+        localStorage.removeItem('counterValue + 1');
+    }
 
     return (
         <div className="App">
@@ -42,9 +45,10 @@ function App() {
                 <button onClick={dicHandler}>Dicrement</button>
             </div>
             <div>
-                <button onClick={setToLocalStorage}>setToLocalStorage</button>
-                <button onClick={getFromToLocalStorage}>getFromToLocalStorage</button>
-                <button onClick={clearLocalStorage}>clearLocalStorage</button>
+                <button onClick={setToLocalStorageHandler}>setToLocalStorage</button>
+                <button onClick={getFromToLocalStorageHandler}>getFromToLocalStorage</button>
+                <button onClick={clearLocalStorageHandler}>clearLocalStorage</button>
+                <button onClick={removeItemFromLocalStorageHandler}>removeItemFromLocalStorage</button>
             </div>
 
         </div>
