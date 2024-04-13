@@ -14,13 +14,34 @@ function App() {
         setValue(value - 1)
     }
 
+    const setToLocalStorage = () => {
+        localStorage.setItem('counterValue', JSON.stringify(value)) // преобразуем число в строку
+    }
+
+    const getFromToLocalStorage = () => {
+        let valueAsString = localStorage.getItem('counterValue');
+
+        if(valueAsString) {
+            setValue(JSON.parse(valueAsString)) // преобразуем строку в число
+        }
+
+    }
+
+
     return (
         <div className="App">
             <h1>LocalStorage</h1>
 
             <h2>Counter: {value}</h2>
-            <button onClick={incHandler}>Increment</button>
-            <button onClick={dicHandler}>Dicrement</button>
+            <div>
+                <button onClick={incHandler}>Increment</button>
+                <button onClick={dicHandler}>Dicrement</button>
+            </div>
+            <div>
+                <button onClick={setToLocalStorage}>setToLocalStorage</button>
+                <button onClick={getFromToLocalStorage}>getFromToLocalStorage</button>
+            </div>
+
         </div>
     );
 }
