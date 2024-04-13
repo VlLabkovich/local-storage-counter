@@ -17,7 +17,8 @@ function App() {
     return (
         <div className="App">
             <h1>LocalStorage</h1>
-            <h2>{value}</h2>
+
+            <h2>Counter: {value}</h2>
             <button onClick={incHandler}>Increment</button>
             <button onClick={dicHandler}>Dicrement</button>
         </div>
