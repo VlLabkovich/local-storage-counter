@@ -1,10 +1,22 @@
-import React, {useState} from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 
 function App() {
 
     const [value, setValue] = useState(0);
+
+    useEffect(() => {
+        let valueAsString = localStorage.getItem('counterValue');
+        if (valueAsString) {
+            let newValue = JSON.parse(valueAsString);// преобразуем строку в число
+            setValue(newValue)
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('counterValue', JSON.stringify(value)) // преобразуем число в строку
+
+    }, [value])
 
     const incHandler = () => {
         setValue(value + 1)
@@ -13,43 +25,14 @@ function App() {
         setValue(value - 1)
     }
 
-    const setToLocalStorageHandler  = () => {
-        localStorage.setItem('counterValue', JSON.stringify(value)) // преобразуем число в строку
-        localStorage.setItem('counterValue + 1', JSON.stringify(value + 1)) // преобразуем число в строку
-    }
-    const getFromToLocalStorageHandler = () => {
-        let valueAsString = localStorage.getItem('counterValue');
-
-        if (valueAsString) {
-            setValue(JSON.parse(valueAsString)) // преобразуем строку в число
-        }
-
-    }
-
-    const clearLocalStorageHandler = () => {
-        localStorage.clear()
-        setValue(0)
-    }
-
-    const removeItemFromLocalStorageHandler = () => {
-        localStorage.removeItem('counterValue + 1');
-    }
-
     return (
         <div className="App">
             <h1>LocalStorage</h1>
 
             <h2>Counter: {value}</h2>
-            <div>
-                <button onClick={incHandler}>Increment</button>
-                <button onClick={decHandler}>Decrement</button>
-            </div>
-            <div>
-                <button onClick={setToLocalStorageHandler}>setToLocalStorage</button>
-                <button onClick={getFromToLocalStorageHandler}>getFromToLocalStorage</button>
-                <button onClick={clearLocalStorageHandler}>clearLocalStorage</button>
-                <button onClick={removeItemFromLocalStorageHandler}>removeItemFromLocalStorage</button>
-            </div>
+
+            <button onClick={incHandler}>Increment</button>
+            <button onClick={decHandler}>Decrement</button>
 
         </div>
     );
